@@ -19,6 +19,5 @@ To interact, send RESTful requests to: http://127.0.0.1:5000/<request>
 | Set communication step in seconds                              |  PUT ``step`` with data ``step=<value>``                  |
 | Receive sensor signal names (y) and metadata                   |  GET ``measurements``                                     |
 | Receive control signals names (u) and metadata                 |  GET ``inputs``                                           |
-| Receive test result data                                       |  GET ``results``                                          |
-| Receive test KPIs                                              |  GET ``kpi``                                              |
+| Receive test result data                                       |  GET ``results``                                          |                              |
 | Receive test case name                                         |  GET ``name``                                             |
