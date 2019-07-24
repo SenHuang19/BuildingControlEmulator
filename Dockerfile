@@ -14,15 +14,3 @@ USER root
 WORKDIR $HOME
 
 RUN pip install --user flask-restful
-
-COPY testcase /usr/testcases/testcase
-
-COPY examples /usr/testcases/examples
-
-COPY config.py /usr/testcases/config.py
-
-COPY restapi.py /usr/testcases/restapi.py
-
-COPY testcase.py /usr/testcases/testcase.py
-
-

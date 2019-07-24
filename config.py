@@ -19,9 +19,16 @@ def get_config():
     '''
         
     config = {
+	'fmu1':{
     # Enter configuration information
-    'fmupath'  : '/usr/testcases/testcase/models/wrapped.fmu',                
-    'step'     : 60
+    'fmupath'  : '/usr/testcases/testcase/models/fmu1/wrapped.fmu',
+    'name'  : 'LargeOffice',
+    'step'     : 60},
+	'fmu2':{
+    # Enter configuration information
+    'fmupath'  : '/usr/testcases/testcase/models/fmu2/wrapped.fmu',   
+    'name'  : 'LargeOfficeFDD',
+    'step'     : 60}
     }
     
     return config

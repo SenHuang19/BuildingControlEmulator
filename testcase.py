@@ -22,39 +22,72 @@ class TestCase(object):
         
         # Get configuration information
         con = config.get_config()
+        self.fmus=[]
+        self.fmu_names=[]
+        self.fmu_path=[]
+        self.step=[]
+        for key in con.keys():
         # Define simulation model
-        self.fmupath = con['fmupath']
+             fmupath = con[key]['fmupath']
         # Load fmu
-        self.fmu = load_fmu(self.fmupath)
+             self.fmus.append(load_fmu(fmupath))
+             self.fmu_path.append(fmupath)
+             self.fmu_names.append(con[key]['name'])
+             self.step.append(con[key]['step'])
         # Get version
-        self.fmu_version = self.fmu.get_version()
+        input_names=[]
+        output_names=[]
+        for fmu in self.fmus:
+             fmu_version = fmu.get_version()
         # Get available control inputs and outputs
-        if self.fmu_version == '2.0':
-            input_names = self.fmu.get_model_variables(causality = 2).keys()
-            output_names = self.fmu.get_model_variables(causality = 3).keys()
-        else:
-            raise ValueError('FMU must be version 2.0.')
+             if fmu_version == '2.0':
+                   input_names.append(fmu.get_model_variables(causality = 2).keys())
+                   output_names.append(fmu.get_model_variables(causality = 3).keys())
+             else:
+                   raise ValueError('FMU must be version 2.0.')
         # Define measurements
-        self.y = {'time':[]}
-        for key in output_names:
-            self.y[key] = []
-        self.y_store = copy.deepcopy(self.y)
+        self.y=[]
+        self.y_store=[]
+        self.u=[]
+        self.u_store=[]
+        self.start_time=[]
+        self.final_time=[]
+        self.initialize=[]
+        self.options=[]
+        for i in range(len(input_names)):
+            y ={'time':[]}
+            for key in output_names[i]:
+                  y[key] = []
+            y_store = copy.deepcopy(y)
         # Define inputs
-        self.u = {'time':[]}
-        for key in input_names:
-            self.u[key] = []
-        self.u_store = copy.deepcopy(self.u)
+            u = {'time':[]}
+            for key in input_names[i]:
+                  u[key] = []
+            u_store = copy.deepcopy(u)
         # Set default options
-        self.options = self.fmu.simulate_options()
-#        self.options['CVode_options']['rtol'] = 1e-6 
+            options = self.fmus[i].simulate_options()
+            options['CVode_options']['rtol'] = 1e-6 
         # Set default communication step
-        self.set_step(con['step'])
+
         # Set initial simulation start
-        self.start_time = 0
-        self.initialize = True
-        self.options['initialize'] = self.initialize
+            start_time = 0
+            initialize = True
+            options['initialize'] = self.initialize
+            self.y.append(y)
+            self.y_store.append(y_store)
+            self.u.append(u)
+            self.u_store.append(u_store)
+            self.start_time.append(start_time)
+            self.final_time.append(start_time)
+            self.initialize.append(initialize)
+            self.options.append(options)
+
+
+
+
+
         
-    def advance(self,u):
+    def advance(self,u,i):
         '''Advances the test case model simulation forward one step.
         
         Parameters
@@ -70,15 +103,16 @@ class TestCase(object):
             {<measurement_name> : <measurement_value>}
             
         '''
-        
+
         # Set final time
-        self.final_time = self.start_time + self.step
+        self.final_time[i] = self.start_time[i] + self.step[i]
         # Set control inputs if they exist
         if u.keys():
             u_list = []
-            u_trajectory = self.start_time
+            u_trajectory = self.start_time[i]
             for key in u.keys():
-                if key != 'time':
+                
+                if key != 'time' and u[key] is not None:
                     value = float(u[key])
                     u_list.append(key)
                     u_trajectory = np.vstack((u_trajectory, value))
@@ -86,39 +120,42 @@ class TestCase(object):
         else:
             input_object = None
         # Simulate
-        self.options['initialize'] = self.initialize
-        res = self.fmu.simulate(start_time=self.start_time, 
-                                final_time=self.final_time, 
-                                options=self.options, 
+        print input_object
+        self.options[i]['initialize'] = self.initialize[i]
+        res = self.fmus[i].simulate(start_time=self.start_time[i], 
+                                final_time=self.final_time[i], 
+                                options=self.options[i], 
                                 input=input_object)
         # Get result and store measurement
-        for key in self.y.keys():
-            self.y[key] = res[key][-1]
-            self.y_store[key] = self.y_store[key] + res[key].tolist()[1:]
+        for key in self.y[i].keys():
+            self.y[i][key] = res[key][-1]
+            print self.y_store[i]
+            self.y_store[i][key] = self.y_store[i][key] + res[key].tolist()[1:]
         # Store control inputs
-        for key in self.u.keys():
-            self.u_store[key] = self.u_store[key] + res[key].tolist()[1:] 
+        for key in self.u[i].keys():
+            self.u_store[i][key] = self.u_store[i][key] + res[key].tolist()[1:] 
         # Advance start time
-        self.start_time = self.final_time
+        self.start_time[i] = self.final_time[i]
         # Prevent inialize
-        self.initialize = False
+        self.initialize[i] = False
         
-        return self.y
+        return self.y[i]
 
-    def reset(self,u):
+    def reset(self,i):
         '''Reset the test.
         
         '''
-        
-        self.__init__()
-        self.start_time = float(u)
+        # Load fmu
+        self.fmus[i]=load_fmu(self.fmu_path[i])
+        self.initialize[i] = True
+        self.start_time[i]=0
 
-    def get_step(self):
+    def get_step(self,i):
         '''Returns the current simulation step in seconds.'''
 
-        return self.step
+        return self.step[i]
 
-    def set_step(self,step):
+    def set_step(self,step,i):
         '''Sets the simulation step in seconds.
         
         Parameters
@@ -132,11 +169,11 @@ class TestCase(object):
         
         '''
         
-        self.step = float(step)
+        self.step[i] = float(step)
         
         return None
         
-    def get_inputs(self):
+    def get_inputs(self,i):
         '''Returns a list of control input names.
         
         Parameters
@@ -150,11 +187,11 @@ class TestCase(object):
             
         '''
 
-        inputs = self.u.keys()
+        inputs = self.u[i].keys()
         
         return inputs
         
-    def get_measurements(self):
+    def get_measurements(self,i):
         '''Returns a list of measurement names.
         
         Parameters
@@ -168,11 +205,11 @@ class TestCase(object):
             
         '''
 
-        measurements = self.y.keys()
+        measurements = self.y[i].keys()
         
         return measurements
         
-    def get_results(self):
+    def get_results(self,i):
         '''Returns measurement and control input trajectories.
         
         Parameters
@@ -190,11 +227,11 @@ class TestCase(object):
         
         '''
         
-        Y = {'y':self.y_store, 'u':self.u_store}
+        Y = {'y':self.y_store[i], 'u':self.u_store[i]}
         
         return Y
         
-    def get_kpis(self):
+    def get_kpis(self,i):
         '''Returns KPI data.
         
         Requires standard sensor signals.
@@ -212,7 +249,7 @@ class TestCase(object):
         
         kpi = dict()
         # Energy
-        kpi['Heating Energy'] = self.y_store['ETotHea_y'][-1]
+        kpi['Heating Energy'] = self.y_store[i]['ETotHea_y'][-1]
         # Comfort
 
         return kpi
@@ -231,6 +268,6 @@ class TestCase(object):
             
         '''
         
-        name = self.fmupath[7:-4]
+        name = self.fmu_names
         
         return name

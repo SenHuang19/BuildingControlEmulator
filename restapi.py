@@ -24,6 +24,7 @@ api = Api(app)
 # INSTANTIATE TEST CASE
 # ---------------------
 case = TestCase()
+case_index=0
 # ---------------------
 
 # DEFINE ARGUMENT PARSERS
@@ -31,13 +32,18 @@ case = TestCase()
 # ``step`` interface
 parser_step = reqparse.RequestParser()
 parser_step.add_argument('step')
-# ``reset`` interface
-parser_reset = reqparse.RequestParser()
-parser_reset.add_argument('start')
+
+# ``select emulator`` interface
+parser_name = reqparse.RequestParser()
+parser_name.add_argument('name')
+
 # ``advance`` interface
-parser_advance = reqparse.RequestParser()
-for key in case.u.keys():
-    parser_advance.add_argument(key)
+parser_advance=[]
+for i in range(len(case.u)):
+   temp = reqparse.RequestParser()
+   for key in case.u[i].keys():
+        temp.add_argument(key)
+   parser_advance.append(temp)
 # -----------------------
 
 # DEFINE REST REQUESTS
@@ -48,10 +54,9 @@ class Advance(Resource):
     def post(self):
         '''POST request with input data to advance the simulation one step 
         and receive current measurements.'''
-        u = parser_advance.parse_args()
- #       print u
-        y = case.advance(u)
-        print y
+        u = parser_advance[case_index].parse_args()
+        print u
+        y = case.advance(u,case_index)
         return y
 
 class Reset(Resource):
@@ -59,11 +64,7 @@ class Reset(Resource):
     
     def put(self):
         '''PUT request to reset the test.'''
-        u = parser_reset.parse_args()
-        print 'yes'
-        print u
-        start=u['start']
-        case.reset(start)
+        case.reset(case_index)
         return 'Testcase reset.'
 
         
@@ -72,7 +73,7 @@ class Step(Resource):
     
     def get(self):
         '''GET request to receive current simulation step in seconds.'''
-        step = case.get_step()
+        step = case.get_step(case_index)
         return step
 
     def put(self):
@@ -80,7 +81,7 @@ class Step(Resource):
         args = parser_step.parse_args()
         print args
         step = args['step']
-        case.set_step(step)
+        case.set_step(step,case_index)
         return step, 201
         
 class Inputs(Resource):
@@ -88,7 +89,7 @@ class Inputs(Resource):
     
     def get(self):
         '''GET request to receive list of available inputs.'''
-        u_list = case.get_inputs()
+        u_list = case.get_inputs(case_index)
         return u_list
         
 class Measurements(Resource):
@@ -96,7 +97,7 @@ class Measurements(Resource):
     
     def get(self):
         '''GET request to receive list of available measurements.'''
-        y_list = case.get_measurements()
+        y_list = case.get_measurements(case_index)
         return y_list
         
 class Results(Resource):
@@ -104,7 +105,7 @@ class Results(Resource):
     
     def get(self):
         '''GET request to receive measurement data.'''
-        Y = case.get_results()
+        Y = case.get_results(case_index)
         return Y
         
 class KPI(Resource):
@@ -112,16 +113,46 @@ class KPI(Resource):
     
     def get(self):
         '''GET request to receive KPI data.'''
-        kpi = case.get_kpis()
+        kpi = case.get_kpis(case_index)
         return kpi
         
 class Name(Resource):
     '''Interface to test case name.'''
+     
+    def get(self):
+
+        '''GET request to receive test case name.'''
+        print case.get_name()
+        print case_index
+        name=case.get_name()[case_index]
+        return name
+   
+    def put(self):
+        '''PUT request to change the testcase.'''
+        global case_index   
+        args = parser_name.parse_args()
+        print args
+        name=args['name']
+        i=0
+        for fmu_name in case.get_name():
+                if name == fmu_name:
+                    case_index=i
+
+                    break
+                i=i+1
+        print case_index
+        return 'Testcase selected.'
+
+class Emulator(Resource):
+    '''Interface to test case name.'''
     
     def get(self):
         '''GET request to receive test case name.'''
-        name = case.get_name()
+        name=case.get_name()
         return name
+   
+
+
 # --------------------
         
 # ADD REQUESTS TO API WITH URL EXTENSION
@@ -134,7 +165,9 @@ api.add_resource(Measurements, '/measurements')
 api.add_resource(Results, '/results')
 api.add_resource(KPI, '/kpi')
 api.add_resource(Name, '/name')
+api.add_resource(Emulator, '/emulator')
+
 # --------------------------------------
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
