@@ -1,5 +1,5 @@
 Building Control Emulator
-#########################
+=========================
 
 The repository contains a generic building emulator for testing commercial building control.
 
