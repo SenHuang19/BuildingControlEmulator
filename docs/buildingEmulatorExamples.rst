@@ -47,7 +47,7 @@ On `Building Control Emulator`_ Github repository at *https://github.com/SenHuan
 Methodology
 -----------
 
-**Disclaimer.** This procedure has been tested and worked well on a Mac or Linux machine with Docker installed as presented in `Docker Container <buildingEmulatorExample.rst#docker-container>`_.
+**Disclaimer.** This procedure has been tested and worked well on a Mac or Linux machine with Docker installed as presented in `Docker Container <emulatorPlatform.rst#docker-container>`_.
 
 1. On a computer with docker installed, open a terminal and pull the building cnotrol emulator image.
 
