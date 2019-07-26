@@ -119,7 +119,7 @@ List of examples
 
 The following examples should be found in */emulatorExamples/models/*:
 
-- *wrapped.fmu*
+- *wrapped.fmu* - just for examplefying sake
 
 - *LargeOffice* - *NEED DESCRIPTION*
 
