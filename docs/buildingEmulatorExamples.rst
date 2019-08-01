@@ -169,15 +169,15 @@ Building emulator controllable signals nomenclature
 +--------------------------------+-----------------------------------------------------------------------+----------+
 | floor#_oveMinOAFra_u           | set point for ?????? WHAT EXACTLY IS THIS ??????? on floor #          |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveAirFloRat_u     | set point for air flow relative to max in zone # on floor #
+| floor#_zon#_oveAirFloRat_u     | set point for air flow relative to max in zone # on floor #           |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveHeaOut_u        | zone # on floor # 
+| floor#_zon#_oveHeaOut_u        | zone # on floor #                                                     |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveTRoo_u          | zone # on floor #
+| floor#_zon#_oveTRoo_u          | zone # on floor #                                                     |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveTSetRooCoo_u    | zone # on floor #
+| floor#_zon#_oveTSetRooCoo_u    | zone # on floor #                                                     |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveTSetRooHea_u    | zone # on floor # 
+| floor#_zon#_oveTSetRooHea_u    | zone # on floor #                                                     |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
 
 
