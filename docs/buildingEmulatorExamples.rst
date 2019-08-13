@@ -167,7 +167,7 @@ Building emulator controllable signals nomenclature
 +--------------------------------+-----------------------------------------------------------------------+----------+
 | floor#_aHU_con_oveTSupAir_u    | set point for ?????? WHAT EXACTLY IS THIS ??????? on floor #          |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_oveMinOAFra_u           | set point for ?????? WHAT EXACTLY IS THIS ??????? on floor #          |          |
+| floor#_oveMinOAFra_u           | damper position at the AHU level on floor #                           |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
 | floor#_zon#_oveAirFloRat_u     | set point for air flow relative to max in zone # on floor #           |          |
 +--------------------------------+-----------------------------------------------------------------------+----------+
