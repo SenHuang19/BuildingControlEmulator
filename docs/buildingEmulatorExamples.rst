@@ -128,6 +128,8 @@ Building emulator measurements nomenclature
 +-----------------------+-------------------------------------------------------------+---------+
 | PPum_y                | pump power consumption                                      | Watt    |
 +-----------------------+-------------------------------------------------------------+---------+
+| PBoiler_y             | boiler gas consumption                                      | Watt    |
++-----------------------+-------------------------------------------------------------+---------+
 | floor#_Pfan_y         | fan power consumption on floor #                            | Watt    |
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_TMixAir_y      | actual AHU mixed air temperature on floor #                 | Kelvin  |
@@ -138,6 +140,12 @@ Building emulator measurements nomenclature
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_mSupAir_y      | actual AHU air supply mass flow on floor #                  | Kg/s    |
 +-----------------------+-------------------------------------------------------------+---------+
+| floor#_FanSpe         | AHU speed on floor #                                        |Fraction |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_Pre            | AHU static pressure on floor #                              | Pa      |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_PreSetPoi      | AHU static pressure set point on floor #                    | Pa      |
++-----------------------+-------------------------------------------------------------+---------+
 | floor#_zon#_TMixAir_y | actual mixed air temperature in zone # on floor #           | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_zon#_TRooAir_y | actual room/zone air temperature in zone # on floor #       | Kelvin  |
@@ -146,6 +154,9 @@ Building emulator measurements nomenclature
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_zon#_mSupAir_y | actual air flow in zone # on floor #                        | Kg/s    |
 +-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_mSupAir_y | actual air flow in zone # on floor #                        | Kg/s    |
++-----------------------+-------------------------------------------------------------+---------+
+
 
 Building emulator controllable signals nomenclature
 ---------------------------------------------------
@@ -167,7 +178,15 @@ Building emulator controllable signals nomenclature
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_aHU_con_oveTSupAir_u    | supply air temperature measurement at AHU level on floor #             | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_oveMinOAFra_u           | damper position at the AHU level on floor #                            | fraction |
+| floor#_aHU_con_oveCooCoilLeak_u| the cooling coil leakage at AHU level on floor #                       | Fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveCooVal       | the cooling coil valve position at AHU level on floor #                | Fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_oveStaticPress          | the static pressure sensor measurement at AHU level on floor #         | Pa       |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_oveStaPreSePoi          | the static pressure set point at AHU level on floor #                  | Pa       |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_oveMinOAFra_u           | outdoor air damper position at the AHU level on floor #                | fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_zon#_oveAirFloRat_u     | air flow relative to max in zone # on floor #                          | fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
