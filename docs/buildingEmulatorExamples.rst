@@ -122,7 +122,7 @@ Building emulator measurements nomenclature
 +=======================+=============================================================+=========+
 | time                  | time of measurement                                         | second  |
 +-----------------------+-------------------------------------------------------------+---------+
-| TOutDryBul_y          | outside/ambient temperature                                 | Kelvin  |
+| TOutDryBul_y          | actual outside/ambient temperature                          | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
 | PChi_y                | chiller power consumption                                   | Watt    |
 +-----------------------+-------------------------------------------------------------+---------+
@@ -130,55 +130,55 @@ Building emulator measurements nomenclature
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_Pfan_y         | fan power consumption on floor #                            | Watt    |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_TMixAir_y      | AHU mixed air temperature on floor #                        | Kelvin  |
+| floor#_TMixAir_y      | actual AHU mixed air temperature on floor #                 | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_TRetAir_y      | return temperature on floor #                               | Kelvin  |
+| floor#_TRetAir_y      | actual return temperature on floor #                        | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_TSupAir_y      | AHU supply air temperature on floor #                       | Kelvin  |
+| floor#_TSupAir_y      | actual AHU supply air temperature on floor #                | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_mSupAir_y      | AHU air supply mass flow on floor #                         | Kg/s    |
+| floor#_mSupAir_y      | actual AHU air supply mass flow on floor #                  | Kg/s    |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_zon#_TMixAir_y | mixed air temperature in zone # on floor #                  | Kelvin  |
+| floor#_zon#_TMixAir_y | actual mixed air temperature in zone # on floor #           | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_zon#_TRooAir_y | room/zone air temperature in zone # on floor #              | Kelvin  |
+| floor#_zon#_TRooAir_y | actual room/zone air temperature in zone # on floor #       | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_zon#_TSupAir_y | discharge air temperature in zone # on floor #              | Kelvin  |
+| floor#_zon#_TSupAir_y | actual discharge air temperature in zone # on floor #       | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_zon#_mSupAir_y | air flow in zone # on floor #                               | Kg/s    |
+| floor#_zon#_mSupAir_y | actual air flow in zone # on floor #                        | Kg/s    |
 +-----------------------+-------------------------------------------------------------+---------+
 
 Building emulator controllable signals nomenclature
 ---------------------------------------------------
 
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| Signal name                    | Description  (floor # = {1, 2, 3}, zone # = {1, 2, 3, 4, 5})          | Unit     |
-+================================+=======================================================================+==========+
-| time                           | time of measurement                                                   | second   |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveMinOAFra_u   | set point for damper position at the AHU level on floor #             | fraction |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTMix_u       | set point for mixed air temperature at the AHU level on floor #       | Kelvin   |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTOut_u       | set point for the outside/ambient temperature at AHU level on floor # | Kelvin   |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTRet_u       | set point for return air temperature at AHU level on floor #          | Kelvin   |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTSetSupAir_u | set point for supply air temperature at AHU level on floor #          | Kelvin   |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTSupAir_u    | set point for ?????? WHAT EXACTLY IS THIS ??????? on floor #          |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_oveMinOAFra_u           | damper position at the AHU level on floor #                           |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveAirFloRat_u     | set point for air flow relative to max in zone # on floor #           |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveHeaOut_u        | zone # on floor #                                                     |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveTRoo_u          | zone # on floor #                                                     |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveTSetRooCoo_u    | zone # on floor #                                                     |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
-| floor#_zon#_oveTSetRooHea_u    | zone # on floor #                                                     |          |
-+--------------------------------+-----------------------------------------------------------------------+----------+
++--------------------------------+------------------------------------------------------------------------+----------+
+| Signal name                    | Description  (floor # = {1, 2, 3}, zone # = {1, 2, 3, 4, 5})           | Unit     |
++================================+========================================================================+==========+
+| time                           | time of measurement                                                    | second   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveMinOAFra_u   | set point for damper position at the AHU level on floor #              | fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveTMix_u       | mixed air temperature sensor measurement at the AHU level on floor #   | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveTOut_u       | outside/ambient temperature sensor measurement at AHU level on floor # | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveTRet_u       | return air temperature sensor measurement at AHU level on floor #      | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveTSetSupAir_u | set point for supply air temperature at AHU level on floor #           | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_con_oveTSupAir_u    | supply air temperature measurement at AHU level on floor #             | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_oveMinOAFra_u           | damper position at the AHU level on floor #                            | fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_zon#_oveAirFloRat_u     | air flow relative to max in zone # on floor #                          | fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_zon#_oveHeaOut_u        | reheat valve position in zone # on floor #                             | fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_zon#_oveTRoo_u          | room air temperature sensor measurement in zone # on floor #           | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_zon#_oveTSetRooCoo_u    | cooling temperature set point in zone # on floor #                     | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_zon#_oveTSetRooHea_u    | heating temperature set point in zone # on floor #                     | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
 
 
 List of examples
