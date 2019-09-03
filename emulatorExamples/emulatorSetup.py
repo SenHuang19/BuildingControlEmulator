@@ -56,6 +56,9 @@ class emulatorSetup(object):
         self.start_time = 0
         self.initialize = True
         self.options['initialize'] = self.initialize
+        self.options['filter'] = ["*_y","*_activate","*_u"]   
+#        self.options['return_result'] = False
+        print self.options
         
     def advance(self, u):
         """Advances the test case model simulation forward one step.
