@@ -168,6 +168,8 @@ Building emulator controllable signals nomenclature
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_aHU_con_oveMinOAFra_u   | set point for damper position at the AHU level on floor #              | fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_stat_oveMinOAFra_u   | position set point for damper position at the AHU level on floor #    | Fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_aHU_con_oveTMix_u       | mixed air temperature sensor measurement at the AHU level on floor #   | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_aHU_con_oveTOut_u       | outside/ambient temperature sensor measurement at AHU level on floor # | Kelvin   |
@@ -181,6 +183,8 @@ Building emulator controllable signals nomenclature
 | floor#_aHU_con_oveCooCoilLeak_u| the cooling coil leakage at AHU level on floor #                       | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_aHU_con_oveCooVal       | the cooling coil valve position at AHU level on floor #                | Fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_aHU_stat_oveCooVal_u    | position set point for cooling coil valve at AHU level on floor #      | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_oveStaticPress          | the static pressure sensor measurement at AHU level on floor #         | Pa       |
 +--------------------------------+------------------------------------------------------------------------+----------+
