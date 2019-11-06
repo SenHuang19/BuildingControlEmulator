@@ -192,18 +192,18 @@ Building emulator controllable signals nomenclature
 |oveSig_y                        | supply air temperature sensor measurement at the AHU level on floor #  | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_conCoiEco_oveBlockCooCoi|                                                                        |          |
-|_oveLeakage_u                   | cooling coil leakage at AHU level on floor #                       | Fraction |
+|_oveLeakage_u                   | cooling coil leakage at AHU level on floor #                           | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_conCoiEco_oveBlockCooCoi|                                                                        |          |
-|_ovePos_u                       | ooling coil valve position at AHU level on floor #                | Fraction |
+|_ovePos_u                       | cooling coil valve position at AHU level on floor #                    | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_conCoiEco_CooCoi        |                                                                        |          |
 |_oveSig_u                       | position set point for cooling coil valve at AHU level on floor #      | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_conFan_OvePre_oveSig_u  | static pressure sensor measurement at AHU level on floor #         | Pa       |
+| floor#_conFan_OvePre_oveSig_u  | static pressure sensor measurement at AHU level on floor #             | Pa       |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_conFan_OvePreSetPoi     |                                                                        |          |
-|_oveSig_u                       | static pressure set point at AHU level on floor #                  | Pa       |
+|_oveSig_u                       | static pressure set point at AHU level on floor #                      | Pa       |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_hvac_oveBlockDamper     |                                                                        |          |
 |_ovePos_u                       | air flow relative to max in zone # on floor #                          | fraction |
