@@ -163,6 +163,10 @@ Building emulator measurements nomenclature
 | floor#_zon#_          |                                                             |         |
 |TSetRooHea_u           | heating temperature set point in zone # on floor #          | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_OccSch    | occupant schedule of zone # on floor #                      | Binary  |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_PPD       | ppd of zone # on floor #                                    | %       |
++-----------------------+-------------------------------------------------------------+---------+
 
 
 Building emulator controllable signals nomenclature
@@ -217,7 +221,10 @@ Building emulator controllable signals nomenclature
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_zon#_oveTSetRooHea_u    | heating temperature set point in zone # on floor #                     | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-
+| floor#_zon#_oveOcc             | occupant schedule in zone # on floor #                                 | Binary   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| oveTChWSet                     | set point of the chilled water leaving the chilelr                     | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
 
 List of examples
 ----------------
