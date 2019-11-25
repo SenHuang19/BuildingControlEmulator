@@ -128,24 +128,46 @@ Building emulator measurements nomenclature
 +-----------------------+-------------------------------------------------------------+---------+
 | PPum_y                | pump power consumption                                      | Watt    |
 +-----------------------+-------------------------------------------------------------+---------+
+| PBoiler_y             | boiler gas consumption                                      | Watt    |
++-----------------------+-------------------------------------------------------------+---------+
 | floor#_Pfan_y         | fan power consumption on floor #                            | Watt    |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_TMixAir_y      | actual AHU mixed air temperature on floor #                 | Kelvin  |
+| floor#_conCoiEco_     |                                                             |         |
+|oveTMix_Sig_y          | actual AHU mixed air temperature on floor #                 | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_TRetAir_y      | actual return temperature on floor #                        | Kelvin  |
+| floor#_conCoiEco_     |                                                             |         |
+|oveTRet_Sig_y          | actual AHU return air temperature on floor #                | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_TSupAir_y      | actual AHU supply air temperature on floor #                | Kelvin  |
+| floor#_conCoiEco_     |                                                             |         |
+|oveTSup_Sig_y          | actual AHU SUPPLY air temperature on floor #                | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_mSupAir_y      | actual AHU air supply mass flow on floor #                  | Kg/s    |
+| floor#_conCoiEco_     |                                                             |         |
+|mSup_y                 | actual AHU SUPPLY air flow rate on floor #                  | kg/s    |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_zon#_TMixAir_y | actual mixed air temperature in zone # on floor #           | Kelvin  |
+| floor#_conFan_FanSpeed|                                                             |         |
+|_Sig_y                 | AHU speed on floor #                                        |Fraction |
 +-----------------------+-------------------------------------------------------------+---------+
-| floor#_zon#_TRooAir_y | actual room/zone air temperature in zone # on floor #       | Kelvin  |
+| floor#_conFan_OvePre  |                                                             |         |
+|_Sig_y                 | AHU static pressure on floor #                              | Pa      |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_conFan_        |                                                             |         |
+|OvePreSetPoi_Sig_y     | AHU static pressure set point on floor #                    | Pa      |
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_zon#_TSupAir_y | actual discharge air temperature in zone # on floor #       | Kelvin  |
 +-----------------------+-------------------------------------------------------------+---------+
 | floor#_zon#_mSupAir_y | actual air flow in zone # on floor #                        | Kg/s    |
 +-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_          |                                                             |         |
+|TSetRooCoo_u           | cooling temperature set point in zone # on floor #          | Kelvin  |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_          |                                                             |         |
+|TSetRooHea_u           | heating temperature set point in zone # on floor #          | Kelvin  |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_OccSch    | occupant schedule of zone # on floor #                      | Binary  |
++-----------------------+-------------------------------------------------------------+---------+
+| floor#_zon#_PPD       | ppd of zone # on floor #                                    | %       |
++-----------------------+-------------------------------------------------------------+---------+
+
 
 Building emulator controllable signals nomenclature
 ---------------------------------------------------
@@ -153,33 +175,56 @@ Building emulator controllable signals nomenclature
 +--------------------------------+------------------------------------------------------------------------+----------+
 | Signal name                    | Description  (floor # = {1, 2, 3}, zone # = {1, 2, 3, 4, 5})           | Unit     |
 +================================+========================================================================+==========+
-| time                           | time of measurement                                                    | second   |
+| floor#_onCoiEco_Eco_           |                                                                        |          |
+|ovePos_u                        | set point for damper position at the AHU level on floor #              | fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveMinOAFra_u   | set point for damper position at the AHU level on floor #              | fraction |
+| floor#_onCoiEco_oveBlockEco_   |                                                                        |          |
+|ovePos_u                        | damper position at the AHU level on floor #                            | fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTMix_u       | mixed air temperature sensor measurement at the AHU level on floor #   | Kelvin   |
+| floor#_conCoiEco_oveTMix_      |                                                                        |          |
+|oveSig_y                        | mixed air temperature sensor measurement at the AHU level on floor #   | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTOut_u       | outside/ambient temperature sensor measurement at AHU level on floor # | Kelvin   |
+| floor#_oveTout_oveSig_u        | outside/ambient temperature sensor measurement at AHU level on floor # | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTRet_u       | return air temperature sensor measurement at AHU level on floor #      | Kelvin   |
+| floor#_conCoiEco_oveTRet_      |                                                                        |          |
+|oveSig_y                        | return air temperature sensor measurement at the AHU level on floor #  | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTSetSupAir_u | set point for supply air temperature at AHU level on floor #           | Kelvin   |
+| floor#_conCoiEco_oveTSupSetPoi_|                                                                        |          | 
+|oveSig_u                        | set point for supply air temperature at AHU level on floor #           | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_aHU_con_oveTSupAir_u    | supply air temperature measurement at AHU level on floor #             | Kelvin   |
+| floor#_conCoiEco_oveTSup_      |                                                                        |          |
+|oveSig_y                        | supply air temperature sensor measurement at the AHU level on floor #  | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_oveMinOAFra_u           | damper position at the AHU level on floor #                            | fraction |
+| floor#_conCoiEco_oveBlockCooCoi|                                                                        |          |
+|_oveLeakage_u                   | cooling coil leakage at AHU level on floor #                           | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_zon#_oveAirFloRat_u     | air flow relative to max in zone # on floor #                          | fraction |
+| floor#_conCoiEco_oveBlockCooCoi|                                                                        |          |
+|_ovePos_u                       | cooling coil valve position at AHU level on floor #                    | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_zon#_oveHeaOut_u        | reheat valve position in zone # on floor #                             | fraction |
+| floor#_conCoiEco_CooCoi        |                                                                        |          |
+|_oveSig_u                       | position set point for cooling coil valve at AHU level on floor #      | Fraction |
 +--------------------------------+------------------------------------------------------------------------+----------+
-| floor#_zon#_oveTRoo_u          | room air temperature sensor measurement in zone # on floor #           | Kelvin   |
+| floor#_conFan_OvePre_oveSig_u  | static pressure sensor measurement at AHU level on floor #             | Pa       |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_conFan_OvePreSetPoi     |                                                                        |          |
+|_oveSig_u                       | static pressure set point at AHU level on floor #                      | Pa       |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_hvac_oveBlockDamper     |                                                                        |          |
+|_ovePos_u                       | air flow relative to max in zone # on floor #                          | fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_hvac_oveBlockHeaCoi     |                                                                        |          |
+|_ovePos_u                       | reheat valve position in zone # on floor #                             | fraction |
++--------------------------------+------------------------------------------------------------------------+----------+
+| floor#_zon#_oveTRooAir_u       | room air temperature sensor measurement in zone # on floor #           | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_zon#_oveTSetRooCoo_u    | cooling temperature set point in zone # on floor #                     | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
 | floor#_zon#_oveTSetRooHea_u    | heating temperature set point in zone # on floor #                     | Kelvin   |
 +--------------------------------+------------------------------------------------------------------------+----------+
-
+| floor#_zon#_oveOcc             | occupant schedule in zone # on floor #                                 | Binary   |
++--------------------------------+------------------------------------------------------------------------+----------+
+| oveTChWSet                     | set point of the chilled water leaving the chilelr                     | Kelvin   |
++--------------------------------+------------------------------------------------------------------------+----------+
 
 List of examples
 ----------------
