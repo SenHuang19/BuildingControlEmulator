@@ -12,11 +12,11 @@ For those who have access to the adaptive MPC repository, here are the steps to 
 
 2. Start 2 terminal windows
 
-3. At one terminal, and in a folder of your choice, clone the building emulator repository at `Building Control Emulator`_ , which also includes the script *runBuildingEmulatorDocker.sh* that allows you to start the building emulator docker as root. (https://github.com/SenHuang19/BuildingControlEmulator)
+3. At one terminal, and in a folder of your choice, clone the building emulator repository at `Building Control Emulator`_ , which also includes the script *runBuildingEmulatorDocker.sh* that allows you to start the building emulator docker as root.
 
 .. _`Building Control Emulator`: https://github.com/SenHuang19/BuildingControlEmulator
 
-4. At the other terminal, and in a folder of your choice, clone the adaptive MPC repository at `Adaptive MPC`_ , which also includes the *runMPCDocker.sh* that allows you to start adaptive MPC part of the simulation.
+4. At the other terminal, and in a folder of your choice, clone the adaptive MPC repository at `Adaptive MPC`_ , which also includes the *runMPCDocker.sh* that allows you to start adaptive MPC docker as root.
 
 .. _Adaptive MPC: https://stash.pnnl.gov/scm/~mari009/adaptive-control-with-julia-1.git
 
