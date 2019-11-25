@@ -31,7 +31,7 @@ should return a list of Docker images, which should include something similar to
 +-------------------------------------------+----------+------------------+----------------+--------------+
 | REPOSITORY                                | TAG      | IMAGE ID         | CREATED        | SIZE         |
 +===========================================+==========+==================+================+==============+
-| blaurmarinovici/building_control_emulator | latest   | 04f1b11d5bd6     | 31 hours ago   | 1.69GB       |
+| laurmarinovici/building_control_emulator | latest   | 04f1b11d5bd6     | 31 hours ago   | 1.69GB       |
 +-------------------------------------------+----------+------------------+----------------+--------------+
 
 4. To instantiate the Docker container, run
