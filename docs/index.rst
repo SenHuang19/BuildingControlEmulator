@@ -14,6 +14,7 @@ Using the Building Control Emulator
    emulatorPlatform
    jmodelicaDocker
    buildingEmulatorExamples
+   buildingWithAdaptiveMPCExample
 
 Indices and tables
 ==================
