@@ -54,24 +54,33 @@ Methodology
 .. code::
 
   docker pull laurmarinovici/building_control_emulator:latest
+  
 
-2. To instantiate the Docker container, run
+2. Clone the repository in to your home directory: /home/*networkID*.
+
+.. code::
+
+  git clone https://github.com/SenHuang19/BuildingControlEmulator  
+  
+
+3. To instantiate the Docker container, run
 
 .. code::
 
   docker run -it --rm -p="127.0.0.1:5000:5000" \
-          --mount type=bind,source=/Users/mari009/PNNL_Projects/GitHubRepositories/BuildingControlEmulator/emulatorExamples/,destination=/mnt/examples \
+          --mount type=bind,source=/home/*networkID*/BuildingControlEmulator/emulatorExamples/,destination=/mnt/examples \
           --name=jmodelica_docker laurmarinovici/building_control_emulator:latest bash
 
-where */Users/mari009/PNNL_Projects/GitHubRepositories/BuildingControlEmulator/* represents the local folder where the building control emulator Github repository has been cloned to, and */mnt/examples* is just a folder on the already started *jmodelica_container*.
 
-3. At the opened terminal inside the container:
+where /home/*networkID*/ is the local folder where the building control emulator Github repository has been cloned to, and */mnt/examples* is just a folder on the already started *jmodelica_container*.
+
+4. At the opened terminal inside the container:
 
 .. code::
 
   cd /mnt/examples
 
-4. Run
+5. Run
 
 .. code::
 
@@ -88,7 +97,7 @@ The app should start showing
   * Debug mode: off
   * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 
-5. At a different terminal
+6. At a different terminal
 
 .. code::
 
@@ -96,7 +105,7 @@ The app should start showing
 
   python runSimulation.py --url="http://0.0.0.0:5000" --dayOfYear=200 --dayOffset=0 --simDuration=1200 --fmuStep=300
 
-6. After 4 300-second intervals, within which the building emulator is simulated, the simulation ends, and the user can observe the following output files:
+7. After 4 300-second intervals, within which the building emulator is simulated, the simulation ends, and the user can observe the following output files:
 
   - in *<..>/BuildingControlEmulator/simulationExamples*: 
 
