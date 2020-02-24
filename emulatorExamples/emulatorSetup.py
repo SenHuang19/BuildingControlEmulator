@@ -90,6 +90,7 @@ class emulatorSetup(object):
             input_object = None
         # Simulate
         self.options['initialize'] = self.initialize
+        self.options['filter'] = '*result'
         res = self.fmu.simulate(start_time=self.start_time, 
                                 final_time=self.final_time, 
                                 options=self.options, 
@@ -113,6 +114,7 @@ class emulatorSetup(object):
         
         """
 
+        self.__init__()
         self.start_time = float(u)
 
     def get_step(self):
