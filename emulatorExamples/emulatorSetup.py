@@ -116,6 +116,7 @@ class emulatorSetup(object):
         
         """
         self.fmu = load_fmu(self.fmupath)
+        self.initialize = True
         self.start_time = float(u)
 
     def get_step(self):
