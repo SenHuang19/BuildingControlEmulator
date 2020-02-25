@@ -81,7 +81,8 @@ class emulatorSetup(object):
             u_list = []
             u_trajectory = self.start_time
             for key in u.keys():
-                if key != 'time':
+                if key != 'time' and u[key] is not None:
+#                    print u[key]
                     value = float(u[key])
                     u_list.append(key)
                     u_trajectory = np.vstack((u_trajectory, value))
@@ -90,7 +91,8 @@ class emulatorSetup(object):
             input_object = None
         # Simulate
         self.options['initialize'] = self.initialize
-        self.options['filter'] = '*result'
+        self.options['filter'] = ['*_y','*_u','*_activate']
+        self.options['result_handling'] = 'memory'  
         res = self.fmu.simulate(start_time=self.start_time, 
                                 final_time=self.final_time, 
                                 options=self.options, 
@@ -113,8 +115,7 @@ class emulatorSetup(object):
         """Reset the test.
         
         """
-
-        self.__init__()
+        self.fmu = load_fmu(self.fmupath)
         self.start_time = float(u)
 
     def get_step(self):
